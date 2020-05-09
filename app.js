@@ -19,7 +19,16 @@ var indexRoutes = require("./routes/index");
 
 // APP CONFIG
 // DATABASE CONFIG
-mongoose.connect("mongodb://localhost/yelp_camp", {
+// mongoose.connect("mongodb://localhost/yelp_camp", {
+// 	useNewUrlParser: true, 
+// 	useUnifiedTopology: true
+// }).then(() => {
+// 	console.log("Connected to MongoDB!");
+// }).catch(err => {
+// 	console.log("ERRPR", err.message);
+// });
+
+mongoose.connect("mongodb+srv://JaysonCheng98:Googleintern98@cluster0-wjnue.mongodb.net/test?retryWrites=true&w=majority", {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true
 }).then(() => {
