@@ -28,7 +28,7 @@ mongoose.connect(process.env.DATABASEURL, {
 	console.log("ERRPR", err.message);
 });
 
-// mongoose.connect("mongodb+srv://JaysonCheng98:Googleintern98@cluster0-wjnue.mongodb.net/test?retryWrites=true&w=majority", {
+// mongoose.connect("mongodb+srv://JaysonCheng98:<password>@cluster0-wjnue.mongodb.net/test?retryWrites=true&w=majority", {
 // 	useNewUrlParser: true, 
 // 	useUnifiedTopology: true
 // }).then(() => {
