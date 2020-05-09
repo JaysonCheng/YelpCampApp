@@ -19,16 +19,7 @@ var indexRoutes = require("./routes/index");
 
 // APP CONFIG
 // DATABASE CONFIG
-// mongoose.connect("mongodb://localhost/yelp_camp", {
-// 	useNewUrlParser: true, 
-// 	useUnifiedTopology: true
-// }).then(() => {
-// 	console.log("Connected to MongoDB!");
-// }).catch(err => {
-// 	console.log("ERRPR", err.message);
-// });
-
-mongoose.connect("mongodb+srv://JaysonCheng98:Googleintern98@cluster0-wjnue.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DATABASEURL, {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true
 }).then(() => {
@@ -36,6 +27,15 @@ mongoose.connect("mongodb+srv://JaysonCheng98:Googleintern98@cluster0-wjnue.mong
 }).catch(err => {
 	console.log("ERRPR", err.message);
 });
+
+// mongoose.connect("mongodb+srv://JaysonCheng98:Googleintern98@cluster0-wjnue.mongodb.net/test?retryWrites=true&w=majority", {
+// 	useNewUrlParser: true, 
+// 	useUnifiedTopology: true
+// }).then(() => {
+// 	console.log("Connected to MongoDB!");
+// }).catch(err => {
+// 	console.log("ERRPR", err.message);
+// });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
