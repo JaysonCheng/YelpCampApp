@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -21,7 +23,7 @@ var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
 
 // APP CONFIG
 // DATABASE CONFIG
-mongoose.connect(process.env.DATABASEURL, {
+mongoose.connect(url, {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true
 }).then(() => {
@@ -47,6 +49,9 @@ app.use(flash());
 
 // Seed the Database
 // seedDB();
+
+// MOMENT CONFIG (DATE FOR COMMENTS)
+app.locals.moment = require('moment');
 
 // PASSPORT CONFIG
 app.use(require("express-session")({
