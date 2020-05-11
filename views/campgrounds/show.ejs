@@ -18,9 +18,9 @@
 					<h4><a><%=campground.name%></a></h4>
 					<p><%= campground.description %></p>
 					<p>
-					  	<em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+					  	<em>Submitted by: <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></em>
 					</p>
-					<% if(currentUser && campground.author.id.equals(currentUser._id)){ %>
+					<% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
 						<a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
 						<form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
 							<button class="btn btn-xs btn-danger">Delete</button>
@@ -38,17 +38,20 @@
 						<div class="col-md-12">
 							<strong><%= comment.author.username %></strong>
 							<span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
-							<p>
+							<div>								
 								<%= comment.text %>
-							</p>
-							<% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-								<a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
-									Edit
-								</a>
-								<form class="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-									<input type="submit" class="btn btn-xs btn-danger delete-form" value="Delete">
-								</form>
-							<% } %>
+								<% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+								<div class="pull-right">
+									<a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
+										Edit
+									</a>
+									<form class="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+										<input type="submit" class="btn btn-xs btn-danger delete-form" value="Delete">
+									</form>
+								</div>
+								<% } %>
+								<hr>
+							</div>
 						</div>
 					</div>
 				<% }); %>
